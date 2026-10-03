@@ -26,7 +26,7 @@ nav a{text-decoration:none;color:var(--muted)}
 nav a:hover{color:var(--accent)}
 .burger{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
 
-/* Hero */
+
 .hero{padding:110px 0 90px}
 .hero h1{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.1;font-weight:800;max-width:14ch}
 .hero p{max-width:52ch;color:var(--muted);margin:22px 0 32px;font-size:1.1rem}
@@ -80,11 +80,9 @@ footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:v
 <body>
 <div id="root"></div>
 
-<!-- React library, loaded from the internet (two lines instead of a huge file) -->
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 
-<!-- YOUR CODE: content, components, form validation -->
 <script>
 if (!window.React || !window.ReactDOM) {
   document.getElementById("root").innerHTML = "<div style=\"padding:40px 20px;font-family:sans-serif;max-width:560px;margin:auto\"><h2>The page could not load React.</h2><p>Check your internet connection, turn off any ad-blocker or VPN, then refresh (Ctrl + Shift + R).</p></div>";
@@ -93,16 +91,16 @@ const {
   useState
 } = React;
 
-/* ===== EDIT YOUR CONTENT HERE ===== */
 const NAME = "Deepak Mandal";
 const HEADLINE = "I build web apps from database to browser.";
 const INTRO = `Hi, I'm ${NAME}, a full-stack developer who turns ideas into fast, accessible and well-structured products.`;
 const ABOUT = ["I'm a developer who enjoys the whole journey of a product: designing the interface, building the API and deploying it.", "I care about clean code, clear communication and learning fast. I'm looking for an internship where I can contribute to real, larger-scale work."];
 const LINKS = ["home", "about", "skills", "projects", "contact"];
 const SKILLS = {
+  Langauge: ["Java","Javascript","Python"],
   Frontend: ["HTML", "CSS", "JavaScript", "React.js"],
   Backend: ["Node.js", "Express.js", "REST APIs"],
-  "Databases & Tools": ["PostgreSQL", "MongoDB", "Git", "GitHub"]
+  "Databases & Tools": ["SQL", "MongoDB", "Git", "GitHub"]
 };
 const EMAIL = "deepak2005mandal@gmail.com";
 const PROJECTS = [{
@@ -116,86 +114,85 @@ const PROJECTS = [{
   tags: ["React", "Node.js", "MongoDB", "Express.js", "HTML", "CSS"],
   link: "https://ai-resume-tracker-three.vercel.app/"
 }];
-
-/* ===== COMPONENTS ===== */
+  
 function Header() {
   const [open, setOpen] = useState(false);
-  return /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("div", {
+  return React.createElement("header", null, React.createElement("div", {
     className: "wrap bar"
-  }, /*#__PURE__*/React.createElement("a", {
+  }, React.createElement("a", {
     className: "logo",
     href: "#home"
-  }, NAME), /*#__PURE__*/React.createElement("button", {
+  }, NAME), React.createElement("button", {
     className: "burger",
     "aria-expanded": open,
     onClick: () => setOpen(!open)
-  }, open ? "Close" : "Menu"), /*#__PURE__*/React.createElement("nav", {
+  }, open ? "Close" : "Menu"), React.createElement("nav", {
     className: open ? "open" : "",
     "aria-label": "Main"
-  }, /*#__PURE__*/React.createElement("ul", null, LINKS.map(l => /*#__PURE__*/React.createElement("li", {
+  }, React.createElement("ul", null, LINKS.map(l => React.createElement("li", {
     key: l
-  }, /*#__PURE__*/React.createElement("a", {
+  }, React.createElement("a", {
     href: "#" + l,
     onClick: () => setOpen(false)
   }, l[0].toUpperCase() + l.slice(1))))))));
 }
 function Hero() {
-  return /*#__PURE__*/React.createElement("section", {
+  return React.createElement("section", {
     id: "home",
     className: "hero"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("div", {
     className: "wrap"
-  }, /*#__PURE__*/React.createElement("h1", null, HEADLINE), /*#__PURE__*/React.createElement("p", null, INTRO), /*#__PURE__*/React.createElement("a", {
+  }, React.createElement("h1", null, HEADLINE), React.createElement("p", null, INTRO), React.createElement("a", {
     className: "btn",
     href: "#projects"
-  }, "See my projects"), /*#__PURE__*/React.createElement("a", {
+  }, "See my projects"), React.createElement("a", {
     className: "btn alt",
     href: "#contact"
   }, "Contact me")));
 }
 function About() {
-  return /*#__PURE__*/React.createElement("section", {
+  return React.createElement("section", {
     id: "about"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("div", {
     className: "wrap about"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("div", {
     className: "avatar",
     "aria-hidden": "true"
-  }, NAME[0]), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, "About me"), ABOUT.map((t, i) => /*#__PURE__*/React.createElement("p", {
+  }, NAME[0]), React.createElement("div", null, React.createElement("h2", null, "About me"), ABOUT.map((t, i) => React.createElement("p", {
     key: i
   }, t)))));
 }
 function Skills() {
-  return /*#__PURE__*/React.createElement("section", {
+  return React.createElement("section", {
     id: "skills"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("div", {
     className: "wrap"
-  }, /*#__PURE__*/React.createElement("h2", null, "Skills and tools"), /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("h2", null, "Skills and tools"), React.createElement("div", {
     className: "grid"
-  }, Object.entries(SKILLS).map(([group, items]) => /*#__PURE__*/React.createElement("div", {
+  }, Object.entries(SKILLS).map(([group, items]) => React.createElement("div", {
     className: "card",
     key: group
-  }, /*#__PURE__*/React.createElement("h3", null, group), /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("h3", null, group), React.createElement("div", {
     className: "tags"
-  }, items.map(s => /*#__PURE__*/React.createElement("span", {
+  }, items.map(s => React.createElement("span", {
     key: s
   }, s))))))));
 }
 function Projects() {
-  return /*#__PURE__*/React.createElement("section", {
+  return React.createElement("section", {
     id: "projects"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("div", {
     className: "wrap"
-  }, /*#__PURE__*/React.createElement("h2", null, "Projects"), /*#__PURE__*/React.createElement("div", {
+  }, React.createElement("h2", null, "Projects"),React.createElement("div", {
     className: "grid"
-  }, PROJECTS.map(p => /*#__PURE__*/React.createElement("article", {
+  }, PROJECTS.map(p => React.createElement("article", {
     className: "card",
     key: p.title
-  }, /*#__PURE__*/React.createElement("h3", null, p.title), /*#__PURE__*/React.createElement("p", null, p.text), /*#__PURE__*/React.createElement("div", {
+  },React.createElement("h3", null, p.title), React.createElement("p", null, p.text), /*#__PURE__*/React.createElement("div", {
     className: "tags"
-  }, p.tags.map(t => /*#__PURE__*/React.createElement("span", {
+  }, p.tags.map(t => React.createElement("span", {
     key: t
-  }, t))), /*#__PURE__*/React.createElement("a", {
+  }, t))), React.createElement("a", {
     href: p.link,
     target: "_blank",
     rel: "noreferrer"
@@ -228,7 +225,6 @@ function Contact() {
     const e = validate(form);
     setErrors(e);
     if (Object.keys(e).length === 0) {
-      // No backend yet, so open the visitor's email app with the message ready to send.
       window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Portfolio message from " + form.name) + "&body=" + encodeURIComponent(form.message + "\n\nFrom: " + form.name + " (" + form.email + ")");
       setSent(true);
       setForm({
@@ -238,9 +234,9 @@ function Contact() {
       });
     }
   };
-  const field = (name, label, Tag = "input", extra = {}) => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
+  const field = (name, label, Tag = "input", extra = {}) => React.createElement(React.Fragment, null, React.createElement("label", {
     htmlFor: name
-  }, label), /*#__PURE__*/React.createElement(Tag, {
+  }, label), React.createElement(Tag, {
     id: name,
     name: name,
     value: form[name],
@@ -248,37 +244,37 @@ function Contact() {
     className: errors[name] ? "bad" : "",
     "aria-invalid": !!errors[name],
     ...extra
-  }), errors[name] && /*#__PURE__*/React.createElement("p", {
+  }), errors[name] && React.createElement("p", {
     className: "err",
     role: "alert"
   }, errors[name]));
-  return /*#__PURE__*/React.createElement("section", {
+  return React.createElement("section", {
     id: "contact"
-  }, /*#__PURE__*/React.createElement("div", {
+  },React.createElement("div", {
     className: "wrap"
-  }, /*#__PURE__*/React.createElement("h2", null, "Contact"), /*#__PURE__*/React.createElement("p", {
+  },React.createElement("h2", null, "Contact"), React.createElement("p", {
     className: "mail"
-  }, "Email me at ", /*#__PURE__*/React.createElement("a", {
+  }, "Email me at ",React.createElement("a", {
     href: "mailto:" + EMAIL
-  }, EMAIL), " or use the form below."), /*#__PURE__*/React.createElement("form", {
+  }, EMAIL), " or use the form below."),React.createElement("form", {
     onSubmit: submit,
     noValidate: true
-  }, sent && /*#__PURE__*/React.createElement("div", {
+  }, sent && React.createElement("div", {
     className: "ok",
     role: "status"
   }, "Thanks! Your email app should open with the message ready to send."), field("name", "Name"), field("email", "Email", "input", {
     type: "email"
   }), field("message", "Message", "textarea", {
     rows: 5
-  }), /*#__PURE__*/React.createElement("button", {
+  }), React.createElement("button", {
     className: "btn",
     type: "submit"
   }, "Send message"))));
 }
 function App() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Skills, null), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement("footer", null, "© ", new Date().getFullYear(), " ", NAME));
+  return /React.createElement(React.Fragment, null, React.createElement(Header, null), React.createElement("main", null, React.createElement(Hero, null), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Skills, null), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement("footer", null, "© ", new Date().getFullYear(), " ", NAME));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+ReactDOM.createRoot(document.getElementById("root")).render(/React.createElement(App, null));
 
 }
 </script>
