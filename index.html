@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+window.addEventListener("error", function (e) {
+  if (!e.message) return;
+  var d = document.createElement("pre");
+  d.style.cssText = "white-space:pre-wrap;margin:20px;padding:16px;background:#fee;border:2px solid #c00;color:#900;font:14px monospace";
+  d.textContent = "Page error: " + e.message + (e.lineno ? " (line " + e.lineno + ")" : "");
+  (document.body || document.documentElement).prepend(d);
+});
+</script>
+<title>Deepak Mandal | Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--ink:#14213d;--muted:#52607a;--card:#fff;--accent:#2f5bea;--line:#d5dce8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+h2{font-size:2rem;margin-bottom:28px}
+
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:10}
+.bar{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:800;text-decoration:none}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--accent)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
+
+.hero{padding:110px 0 90px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.1;font-weight:800;max-width:14ch}
+.hero p{max-width:52ch;color:var(--muted);margin:22px 0 32px;font-size:1.1rem}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;padding:13px 26px;border-radius:8px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);margin-left:12px}
+
+.about{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center}
+.avatar{aspect-ratio:1;background:var(--ink);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:4rem;font-weight:800;max-width:260px}
+.about p{color:var(--muted);margin-bottom:14px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+.card h3{margin-bottom:10px}
+.card p{color:var(--muted);font-size:.95rem;white-space:pre-line}
+.mail{margin-bottom:8px;color:var(--muted)}
+.mail a{color:var(--accent);font-weight:600;word-break:break-all}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags span{background:var(--bg);border-radius:20px;padding:3px 12px;font-size:.85rem}
+.card a{color:var(--accent);font-weight:600;display:inline-block;margin-top:14px}
+
+form{max-width:560px}
+label{display:block;font-weight:600;margin:18px 0 6px}
+input,textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+input.bad,textarea.bad{border-color:#c62828}
+.err{color:#c62828;font-size:.85rem;margin-top:4px}
+.ok{background:#e3f4e8;border:1px solid #9fd1ae;padding:14px;border-radius:8px;margin-bottom:16px}
+form .btn{margin-top:22px}
+footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+}
+
+@media (max-width:600px){
+  section{padding:56px 0}
+  .grid{grid-template-columns:1fr}
+  .burger{display:block}
+  nav{position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:8px 20px}
+  nav li a{display:block;padding:12px 0}
+  .btn.alt{margin:12px 0 0}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<script>
+if (!window.React || !window.ReactDOM) {
+  document.getElementById("root").innerHTML = "<div style=\"padding:40px 20px;font-family:sans-serif;max-width:560px;margin:auto\"><h2>The page could not load React.</h2><p>Check your internet connection, turn off any ad-blocker or VPN, then refresh (Ctrl + Shift + R).</p></div>";
+} else {
+const {
+  useState
+} = React;
+const NAME = "Deepak Mandal";
+const HEADLINE = "I build web apps from database to browser.";
+const INTRO = `Hi, I'm ${NAME}, a full-stack developer who turns ideas into fast, accessible and well-structured products.`;
+const ABOUT = ["I'm a developer who enjoys the whole journey of a product: designing the interface, building the API and deploying it.", "I care about clean code, clear communication and learning fast. I'm looking for an internship where I can contribute to real, larger-scale work."];
+const LINKS = ["home", "about", "skills", "projects", "contact"];
+const SKILLS = {
+  Languages: ["Java", "Python", "JavaScript"],
+  Frontend: ["HTML", "CSS", "React.js"],
+  Backend: ["Node.js", "Express.js", "REST APIs"],
+  "Databases & Tools": ["SQL", "MongoDB", "Git", "GitHub"]
+};
+const EMAIL = "deepak2005mandal@gmail.com";
+const PROJECTS = [{
+  title: "Time Table Management",
+  text: "A full-stack timetable management system featuring dynamic scheduling algorithms to prevent time conflicts and streamline institutional planning.",
+  tags: ["Express", "PostgreSQL", "Node.js", "React.js"],
+  link: "https://timetable-app1.onrender.com"
+}, {
+  title: "AI Resume Tracker",
+  text: "- Job seekers upload resumes (AI-parsed into structured data), browse jobs, apply, and track every application through a status pipeline, with an AI match score and improvement tips for each one.\n- Recruiters post jobs and see every applicant automatically ranked by AI match score, with matched/missing skills and a one-click status pipeline (applied → under review → shortlisted → interview → offer/rejected).",
+  tags: ["React", "Node.js", "MongoDB", "Express.js", "HTML", "CSS"],
+  link: "https://ai-resume-tracker-three.vercel.app/"
+}];
+function Header() {
+  const [open, setOpen] = useState(false);
+  return React.createElement("header", null, React.createElement("div", {
+    className: "wrap bar"
+  }, React.createElement("a", {
+    className: "logo",
+    href: "#home"
+  }, NAME), React.createElement("button", {
+    className: "burger",
+    "aria-expanded": open,
+    onClick: () => setOpen(!open)
+  }, open ? "Close" : "Menu"), React.createElement("nav", {
+    className: open ? "open" : "",
+    "aria-label": "Main"
+  }, React.createElement("ul", null, LINKS.map(l => React.createElement("li", {
+    key: l
+  }, React.createElement("a", {
+    href: "#" + l,
+    onClick: () => setOpen(false)
+  }, l[0].toUpperCase() + l.slice(1))))))));
+}
+function Hero() {
+  return React.createElement("section", {
+    id: "home",
+    className: "hero"
+  }, React.createElement("div", {
+    className: "wrap"
+  }, React.createElement("h1", null, HEADLINE), React.createElement("p", null, INTRO), React.createElement("a", {
+    className: "btn",
+    href: "#projects"
+  }, "See my projects"), React.createElement("a", {
+    className: "btn alt",
+    href: "#contact"
+  }, "Contact me")));
+}
+function About() {
+  return React.createElement("section", {
+    id: "about"
+  }, React.createElement("div", {
+    className: "wrap about"
+  }, React.createElement("div", {
+    className: "avatar",
+    "aria-hidden": "true"
+  }, NAME[0]), React.createElement("div", null, React.createElement("h2", null, "About me"), ABOUT.map((t, i) => React.createElement("p", {
+    key: i
+  }, t)))));
+}
+function Skills() {
+  return React.createElement("section", {
+    id: "skills"
+  }, React.createElement("div", {
+    className: "wrap"
+  }, React.createElement("h2", null, "Skills and tools"), React.createElement("div", {
+    className: "grid"
+  }, Object.entries(SKILLS).map(([group, items]) => React.createElement("div", {
+    className: "card",
+    key: group
+  }, React.createElement("h3", null, group), React.createElement("div", {
+    className: "tags"
+  }, items.map(s => React.createElement("span", {
+    key: s
+  }, s))))))));
+}
+function Projects() {
+  return React.createElement("section", {
+    id: "projects"
+  }, React.createElement("div", {
+    className: "wrap"
+  }, React.createElement("h2", null, "Projects"), React.createElement("div", {
+    className: "grid"
+  }, PROJECTS.map(p => React.createElement("article", {
+    className: "card",
+    key: p.title
+  }, React.createElement("h3", null, p.title), React.createElement("p", null, p.text), React.createElement("div", {
+    className: "tags"
+  }, p.tags.map(t => React.createElement("span", {
+    key: t
+  }, t))), React.createElement("a", {
+    href: p.link,
+    target: "_blank",
+    rel: "noreferrer"
+  }, "View live project"))))));
+}
+function Contact() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [errors, setErrors] = useState({});
+  const [sent, setSent] = useState(false);
+  const validate = f => {
+    const e = {};
+    if (f.name.trim().length < 2) e.name = "Enter your name (at least 2 characters).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = "Enter a valid email, like name@example.com.";
+    if (f.message.trim().length < 10) e.message = "Write a message of at least 10 characters.";
+    return e;
+  };
+  const change = ev => {
+    setForm({
+      ...form,
+      [ev.target.name]: ev.target.value
+    });
+    setSent(false);
+  };
+  const submit = ev => {
+    ev.preventDefault();
+    const e = validate(form);
+    setErrors(e);
+    if (Object.keys(e).length === 0) {
+      window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Portfolio message from " + form.name) + "&body=" + encodeURIComponent(form.message + "\n\nFrom: " + form.name + " (" + form.email + ")");
+      setSent(true);
+      setForm({
+        name: "",
+        email: "",
+        message: ""
+      });
+    }
+  };
+  const field = (name, label, Tag = "input", extra = {}) => React.createElement(React.Fragment, null, React.createElement("label", {
+    htmlFor: name
+  }, label), React.createElement(Tag, {
+    id: name,
+    name: name,
+    value: form[name],
+    onChange: change,
+    className: errors[name] ? "bad" : "",
+    "aria-invalid": !!errors[name],
+    ...extra
+  }), errors[name] && React.createElement("p", {
+    className: "err",
+    role: "alert"
+  }, errors[name]));
+  return React.createElement("section", {
+    id: "contact"
+  }, React.createElement("div", {
+    className: "wrap"
+  }, React.createElement("h2", null, "Contact"), React.createElement("p", {
+    className: "mail"
+  }, "Email me at ", React.createElement("a", {
+    href: "mailto:" + EMAIL
+  }, EMAIL), " or use the form below."), React.createElement("form", {
+    onSubmit: submit,
+    noValidate: true
+  }, sent && React.createElement("div", {
+    className: "ok",
+    role: "status"
+  }, "Thanks! Your email app should open with the message ready to send."), field("name", "Name"), field("email", "Email", "input", {
+    type: "email"
+  }), field("message", "Message", "textarea", {
+    rows: 5
+  }), React.createElement("button", {
+    className: "btn",
+    type: "submit"
+  }, "Send message"))));
+}
+function App() {
+  return React.createElement(React.Fragment, null, React.createElement(Header, null), React.createElement("main", null, React.createElement(Hero, null), React.createElement(About, null), React.createElement(Skills, null), React.createElement(Projects, null), React.createElement(Contact, null)), React.createElement("footer", null, "© ", new Date().getFullYear(), " ", NAME));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
+
+}
+</script>
+</body>
+</html>
